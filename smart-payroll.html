@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Payroll — Launch</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --blue: #1A56FF;
+            --cyan: #00E5C9;
+            --white: #FFFFFF;
+            --light: #F0F4FF;
+            --gray: #8A97B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 10%, rgba(26, 86, 255, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0, 229, 201, 0.12) 0%, transparent 55%),
+                var(--navy);
+        }
+
+        .bg-layer::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            padding: 36px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--blue), #4C7AFF);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 86, 255, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(26, 86, 255, 0);
+            }
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards 0.35s;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--cyan);
+        }
+
+        .hero-sub {
+            margin: 24px auto 0;
+            max-width: 560px;
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards 0.5s;
+        }
+
+        .hero-cta {
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards 0.65s;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--blue) 0%, #4C7AFF 100%);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 15px 38px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 30px rgba(26, 86, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(26, 86, 255, 0.5);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-left: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 14px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 229, 201, 0.06);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            margin: 10px 0;
+        }
+
+        /* ─── HIGHLIGHTS STRIP ─── */
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 28px 0;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards 0.8s;
+        }
+
+        .hl-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.3px;
+        }
+
+        .hl-pill .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            flex-shrink: 0;
+        }
+
+        /* ─── FEATURES GRID ─── */
+        .section-label {
+            text-align: center;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .feat-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(26, 86, 255, 0.3);
+            background: rgba(26, 86, 255, 0.07);
+        }
+
+        .feat-card:hover::before {
+            opacity: 1;
+        }
+
+        .feat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 14px;
+        }
+
+        .feat-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .feat-desc {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ─── WHY SECTION ─── */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 229, 201, 0.12);
+            border-radius: 16px;
+            transition: background 0.2s;
+        }
+
+        .why-card:hover {
+            background: rgba(0, 229, 201, 0.06);
+        }
+
+        .why-num {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.4rem;
+            color: var(--cyan);
+            letter-spacing: -1px;
+        }
+
+        .why-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* ─── SECURITY BANNER ─── */
+        .security-banner {
+            margin: 60px 0;
+            background: linear-gradient(135deg, rgba(26, 86, 255, 0.15) 0%, rgba(0, 229, 201, 0.08) 100%);
+            border: 1px solid rgba(26, 86, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .sec-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .sec-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .sec-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        .sec-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .sec-tag {
+            font-size: 0.75rem;
+            padding: 5px 13px;
+            border-radius: 100px;
+            background: rgba(0, 229, 201, 0.12);
+            border: 1px solid rgba(0, 229, 201, 0.25);
+            color: var(--cyan);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: gap;
+            gap: 16px;
+        }
+
+        .footer-left {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .footer-left span {
+            color: var(--cyan);
+        }
+
+        .footer-right {
+            font-size: 0.82rem;
+            color: var(--gray);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 50px 0 40px;
+            }
+
+            .security-banner {
+                padding: 28px 24px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-layer"></div>
+
+    <div class="wrap">
+
+        <!-- HEADER -->
+        <header>
+            <div class="logo">Smart<span>Payroll</span></div>
+            <div class="badge">🚀 Now Live</div>
+        </header>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-eyebrow">Introducing Smart Payroll</div>
+            <h1>HR & Payroll,<br><em>Simplified.</em></h1>
+            <p class="hero-sub">
+                A complete, end-to-end encrypted Human Resource Management System — built for modern teams who want
+                power without the complexity.
+            </p>
+            <div class="hero-cta">
+                <a href="#" class="btn-primary">Get Started Free</a>
+                <a href="#" class="btn-outline">See Demo</a>
+            </div>
+        </div>
+
+        <!-- HIGHLIGHTS PILLS -->
+        <div class="highlights">
+            <div class="hl-pill"><span class="dot"></span>End-to-End Encrypted</div>
+            <div class="hl-pill"><span class="dot"></span>User Friendly</div>
+            <div class="hl-pill"><span class="dot"></span>Easy to Use</div>
+            <div class="hl-pill"><span class="dot"></span>Secure User Management</div>
+            <div class="hl-pill"><span class="dot"></span>Real-Time Dashboard</div>
+            <div class="hl-pill"><span class="dot"></span>Cloud Ready</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- CORE MODULES -->
+        <section>
+            <div class="section-label">What's Included</div>
+            <div class="section-title">Everything you need.<br>Nothing you don't.</div>
+
+            <div class="features">
+                <div class="feat-card">
+                    <div class="feat-icon">🔐</div>
+                    <div class="feat-title">User Authentication</div>
+                    <div class="feat-desc">Secure login with role-based access control. Keep the right people in the
+                        right places.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🏢</div>
+                    <div class="feat-title">Organization Onboarding</div>
+                    <div class="feat-desc">Get your company set up in minutes. Configure departments, branches, and org
+                        structure effortlessly.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">👤</div>
+                    <div class="feat-title">Employee Master Setup</div>
+                    <div class="feat-desc">Maintain a complete employee database — personal details, documents, job
+                        history, and more.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">💰</div>
+                    <div class="feat-title">Salary Structure Config</div>
+                    <div class="feat-desc">Design flexible salary components — basic, HRA, allowances, deductions —
+                        tailored to your policy.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">⚙️</div>
+                    <div class="feat-title">Payroll Processing</div>
+                    <div class="feat-desc">Run accurate, automated payroll every cycle. Handle attendance, leave, and
+                        overtime with ease.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🧾</div>
+                    <div class="feat-title">Payslip Generation</div>
+                    <div class="feat-desc">Auto-generate branded, professional payslips — shareable digitally with a
+                        single click.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">📊</div>
+                    <div class="feat-title">Reporting & Dashboard</div>
+                    <div class="feat-desc">Live dashboards and exportable reports to keep leadership always in the know.
+                    </div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">👥</div>
+                    <div class="feat-title">User Management</div>
+                    <div class="feat-desc">Granular control over who can view, edit, or approve — across every module.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY HRMS LITE -->
+        <section style="padding-top:0">
+            <div class="section-label">Why Smart Payroll</div>
+            <div class="section-title">Built for results.</div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-num">100%</div>
+                    <div class="why-label">End-to-End<br>Encrypted Data</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-num">&lt;5 min</div>
+                    <div class="why-label">Onboarding<br>Setup Time</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-num">0</div>
+                    <div class="why-label">Payroll Errors<br>with Automation</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-num">24/7</div>
+                    <div class="why-label">Access from<br>Anywhere</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY BANNER -->
+        <div class="security-banner">
+            <div class="sec-icon">🛡️</div>
+            <div class="sec-content">
+                <h3>Security at the Core</h3>
+                <p>
+                    HRMS Lite is built with enterprise-grade security from the ground up. Every byte of your HR and
+                    payroll data is encrypted end-to-end — at rest and in transit — so your team's sensitive information
+                    stays protected always.
+                </p>
+                <div class="sec-tags">
+                    <span class="sec-tag">AES-256 Encryption</span>
+                    <span class="sec-tag">Role-Based Access</span>
+                    <span class="sec-tag">Audit Logs</span>
+                    <span class="sec-tag">Data Privacy Compliant</span>
+                    <span class="sec-tag">Secure Cloud Storage</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-left">Smart<span>Payroll</span> &mdash; Launch Edition 2025</div>
+            <div class="footer-right">Simplifying HR for every organization. 🚀</div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
