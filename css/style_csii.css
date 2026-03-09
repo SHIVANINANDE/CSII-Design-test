@@ -1598,6 +1598,8 @@ h2,
   height: 2px;
   background-color: var(--accent-color);
   transition: width 0.3s ease;
+  border: none !important;
+  margin: 0 !important;
 }
 
 .main-nav .nav-link:hover::after,
