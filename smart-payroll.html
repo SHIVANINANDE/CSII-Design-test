@@ -10,8 +10,11 @@
         rel="stylesheet">
 
     <!-- Required Bootstrap and Icons for Modal -->
+    <link rel="stylesheet" href="css/hover-min.css">
+    <link rel="stylesheet" href="css/material-color.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="font-awesome-6.6.0-pro/all.css">
+    <link rel="stylesheet" href="css/style_csii.css">
 
     <style>
         :root {
@@ -21,6 +24,43 @@
             --white: #FFFFFF;
             --light: #F0F4FF;
             --gray: #4B5563;
+            --bg-layer-dots: rgba(0, 0, 0, 0.04);
+            --pill-bg: rgba(0, 0, 0, 0.05);
+            --pill-border: rgba(0, 0, 0, 0.09);
+            --feat-bg: rgba(0, 0, 0, 0.04);
+            --feat-border: rgba(0, 0, 0, 0.08);
+            --why-bg: rgba(0, 0, 0, 0.03);
+            --why-border: rgba(0, 229, 201, 0.12);
+            --sec-banner-bg1: linear-gradient(135deg, rgba(26, 86, 255, 0.15) 0%, rgba(0, 229, 201, 0.08) 100%);
+            --sec-banner-bg2: linear-gradient(135deg, rgba(10, 147, 130, 0.15) 0%, rgba(26, 86, 255, 0.08) 100%);
+            --sec-banner-border: rgba(26, 86, 255, 0.3);
+            --sec-tag-bg: rgba(0, 229, 201, 0.12);
+            --sec-tag-border: rgba(0, 229, 201, 0.25);
+            --touch-bg: rgba(0, 0, 0, 0.03);
+            --touch-border: rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode {
+            --navy: #e2e8f0;
+            --blue: #3b82f6;
+            --cyan: #14b8a6;
+            --white: #0f172a;
+            --light: #1e293b;
+            --gray: #94a3b8;
+            --bg-layer-dots: rgba(255, 255, 255, 0.05);
+            --pill-bg: rgba(255, 255, 255, 0.05);
+            --pill-border: rgba(255, 255, 255, 0.1);
+            --feat-bg: rgba(255, 255, 255, 0.03);
+            --feat-border: rgba(255, 255, 255, 0.08);
+            --why-bg: rgba(255, 255, 255, 0.03);
+            --why-border: rgba(20, 184, 166, 0.2);
+            --sec-banner-bg1: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(20, 184, 166, 0.08) 100%);
+            --sec-banner-bg2: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%);
+            --sec-banner-border: rgba(59, 130, 246, 0.4);
+            --sec-tag-bg: rgba(20, 184, 166, 0.12);
+            --sec-tag-border: rgba(20, 184, 166, 0.25);
+            --touch-bg: rgba(255, 255, 255, 0.03);
+            --touch-border: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -34,6 +74,32 @@
             color: var(--navy);
             font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ─── TYPOGRAPHY RESETS FOR DARK MODE ─── */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .section-title,
+        .feat-title,
+        .hero-eyebrow,
+        strong,
+        .why-label strong,
+        .sec-content h3 {
+            color: var(--navy);
+            transition: color 0.3s;
+        }
+
+        p,
+        .feat-desc,
+        .why-label,
+        .sec-content p {
+            color: var(--gray);
+            transition: color 0.3s;
         }
 
         /* Animated background */
@@ -45,14 +111,16 @@
                 radial-gradient(ellipse 60% 50% at 80% 10%, rgba(26, 86, 255, 0.18) 0%, transparent 60%),
                 radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0, 229, 201, 0.12) 0%, transparent 55%),
                 var(--white);
+            transition: background 0.3s;
         }
 
         .bg-layer::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-image: radial-gradient(var(--bg-layer-dots) 1px, transparent 1px);
             background-size: 36px 36px;
+            transition: background-image 0.3s;
         }
 
         .wrap {
@@ -226,8 +294,8 @@
             display: flex;
             align-items: center;
             gap: 7px;
-            background: rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.09);
+            background: var(--pill-bg);
+            border: 1px solid var(--pill-border);
             border-radius: 100px;
             padding: 8px 18px;
             font-size: 0.82rem;
@@ -269,8 +337,8 @@
         }
 
         .feat-card {
-            background: rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: var(--feat-bg);
+            border: 1px solid var(--feat-border);
             border-radius: 16px;
             padding: 28px 24px;
             transition: transform 0.2s, border-color 0.2s, background 0.2s;
@@ -330,8 +398,8 @@
         .why-card {
             text-align: center;
             padding: 32px 20px;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 229, 201, 0.12);
+            background: var(--why-bg);
+            border: 1px solid var(--why-border);
             border-radius: 16px;
             transition: background 0.2s;
         }
@@ -358,8 +426,8 @@
         /* ─── SECURITY BANNER ─── */
         .security-banner {
             margin: 60px 0;
-            background: linear-gradient(135deg, rgba(26, 86, 255, 0.15) 0%, rgba(0, 229, 201, 0.08) 100%);
-            border: 1px solid rgba(26, 86, 255, 0.3);
+            background: var(--sec-banner-bg1);
+            border: 1px solid var(--sec-banner-border);
             border-radius: 20px;
             padding: 40px 48px;
             display: flex;
@@ -398,35 +466,14 @@
             font-size: 0.75rem;
             padding: 5px 13px;
             border-radius: 100px;
-            background: rgba(0, 229, 201, 0.12);
-            border: 1px solid rgba(0, 229, 201, 0.25);
+            background: var(--sec-tag-bg);
+            border: 1px solid var(--sec-tag-border);
             color: var(--cyan);
         }
 
-        /* ─── FOOTER ─── */
-        footer {
-            border-top: 1px solid rgba(0, 0, 0, 0.07);
-            padding: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: gap;
-            gap: 16px;
-        }
-
-        .footer-left {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
-
-        .footer-left span {
-            color: var(--cyan);
-        }
-
-        .footer-right {
-            font-size: 0.82rem;
-            color: var(--gray);
+        /* ─── OVERRIDE GLOBAL FOOTER ─── */
+        footer-js .bg-darker {
+            display: none !important;
         }
 
         section {
@@ -444,14 +491,73 @@
                 gap: 16px;
             }
 
-            footer {
-                flex-direction: column;
-                text-align: center;
-            }
-
             .btn-outline {
                 margin-left: 0;
                 margin-top: 10px;
+            }
+        }
+
+        /* ─── NAVBAR ─── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 32px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin: 0 0 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode header {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, var(--blue) 0%, #4C7AFF 100%);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(26, 86, 255, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 86, 255, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
             }
         }
     </style>
@@ -465,144 +571,216 @@
 
         <!-- HEADER -->
         <header>
-            <div class="logo">Smart<span>Payroll</span></div>
-            <div class="badge">🚀 Now Live</div>
+            <a href="index.html" class="logo-link">
+                <img id="spLogo" src="images/sp-logo-light.jpg" alt="Smart Payroll Logo"
+                    style="height: 48px; border-radius: 6px; mix-blend-mode: multiply;">
+            </a>
+
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="https://csii.in/hrms-lite/#/account/login" target="_blank" class="btn-login">Log In</a>
+            </nav>
+
+            <div class="d-flex align-items-center gap-3">
+                <button id="themeToggle" class="btn btn-outline"
+                    style="padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; border: 1.5px solid var(--pill-border); background: var(--pill-bg); color: var(--navy); cursor: pointer; transition: all 0.2s;">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="badge d-none d-md-block">🚀 Now Live</div>
+            </div>
         </header>
 
         <!-- HERO -->
         <div class="hero">
-            <div class="hero-eyebrow">Introducing Smart Payroll</div>
-            <h1>HR & Payroll,<br><em>Simplified.</em></h1>
+            <div class="hero-eyebrow">Payroll Simplified</div>
+            <h1>SMART PAYROLL</h1>
+            <p class="hero-sub" style="margin-top: 10px; color: var(--cyan); font-weight: 500;">Powered by CSII INDIA
+                Pvt. Ltd.</p>
+
+            <h3 style="margin-top: 30px; font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700;">Run
+                compliant payroll in India in just one day</h3>
             <p class="hero-sub">
-                A complete, end-to-end encrypted Human Resource Management System — built for modern teams who want
-                power without the complexity.
-            </p>
-            <div class="hero-cta">
-                <a href="https://csii.in/hrms-lite/#/account/login" target="_blank" class="btn-primary">Get Started
-                    Free</a>
-                <a href="#" class="btn-outline" data-bs-toggle="modal" data-bs-target="#callback">Book Demo</a>
-            </div>
+                Smart Payroll helps founders, HR teams, and consultants move from spreadsheets to accurate, compliant
+                payroll — without long implementations or IT support.
         </div>
 
         <!-- HIGHLIGHTS PILLS -->
         <div class="highlights">
-            <div class="hl-pill"><span class="dot"></span>End-to-End Encrypted</div>
-            <div class="hl-pill"><span class="dot"></span>User Friendly</div>
-            <div class="hl-pill"><span class="dot"></span>Easy to Use</div>
-            <div class="hl-pill"><span class="dot"></span>Secure User Management</div>
-            <div class="hl-pill"><span class="dot"></span>Real-Time Dashboard</div>
-            <div class="hl-pill"><span class="dot"></span>Cloud Ready</div>
+            <div class="hl-pill"><span class="dot"></span><strong>&lt; 1 Day</strong>: Typical go-live after basic setup
+            </div>
+            <div class="hl-pill"><span class="dot"></span><strong>100%</strong>: Cloud-based secure access</div>
+            <div class="hl-pill"><span class="dot"></span><strong>Zero</strong>: IT support or ERP training needed</div>
+            <div class="hl-pill"><span class="dot"></span><strong>Multi</strong>: Location and multi-state support</div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- CORE MODULES -->
-        <section>
-            <div class="section-label">What's Included</div>
-            <div class="section-title">Everything you need.<br>Nothing you don't.</div>
+        <!-- WHY SMART PAYROLL -->
+        <section id="about">
+            <div class="section-label">Why Smart Payroll</div>
+            <div class="section-title">Built for results.</div>
 
             <div class="features">
                 <div class="feat-card">
-                    <div class="feat-icon">🔐</div>
-                    <div class="feat-title">User Authentication</div>
-                    <div class="feat-desc">Secure login with role-based access control. Keep the right people in the
-                        right places.</div>
+                    <div class="feat-icon">🎯</div>
+                    <div class="feat-title">A. Made for non-technical teams</div>
+                    <div class="feat-desc">Run payroll without IT, complex ERP training, or heavy implementation. If you
+                        can use Excel, you can use Smart Payroll.</div>
                 </div>
                 <div class="feat-card">
-                    <div class="feat-icon">🏢</div>
-                    <div class="feat-title">Organization Onboarding</div>
-                    <div class="feat-desc">Get your company set up in minutes. Configure departments, branches, and org
-                        structure effortlessly.</div>
+                    <div class="feat-icon">⚖️</div>
+                    <div class="feat-title">B. Built for Indian compliance</div>
+                    <div class="feat-desc">Handle PF, ESI, PT, TDS, Bonus, and Gratuity with pre-configured rules and
+                        audit-ready summaries.</div>
                 </div>
                 <div class="feat-card">
-                    <div class="feat-icon">👤</div>
-                    <div class="feat-title">Employee Master Setup</div>
-                    <div class="feat-desc">Maintain a complete employee database — personal details, documents, job
-                        history, and more.</div>
+                    <div class="feat-icon">📈</div>
+                    <div class="feat-title">C. Ideal for growing businesses</div>
+                    <div class="feat-desc">Perfect for startups, SMEs, and consultants managing multiple client payrolls
+                        across locations.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT YOU GET -->
+        <section id="features" style="padding-top:0">
+            <div class="section-label">What you get with Smart Payroll</div>
+            <div class="section-title">Everything you need.</div>
+
+            <div class="features">
+                <div class="feat-card">
+                    <div class="feat-icon">⚡</div>
+                    <div class="feat-title">Instant account setup</div>
+                    <div class="feat-desc">Sign up, verify your workspace, and start configuring payroll in minutes — no
+                        onboarding queues and no waiting.</div>
                 </div>
                 <div class="feat-card">
-                    <div class="feat-icon">💰</div>
-                    <div class="feat-title">Salary Structure Config</div>
-                    <div class="feat-desc">Design flexible salary components — basic, HRA, allowances, deductions —
-                        tailored to your policy.</div>
+                    <div class="feat-icon">📁</div>
+                    <div class="feat-title">Simple employee upload</div>
+                    <div class="feat-desc">Import employees in bulk using ready Excel templates or quick entry forms,
+                        with basic validation to reduce master data errors.</div>
                 </div>
                 <div class="feat-card">
                     <div class="feat-icon">⚙️</div>
-                    <div class="feat-title">Payroll Processing</div>
-                    <div class="feat-desc">Run accurate, automated payroll every cycle. Handle attendance, leave, and
-                        overtime with ease.</div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-icon">🧾</div>
-                    <div class="feat-title">Payslip Generation</div>
-                    <div class="feat-desc">Auto-generate branded, professional payslips — shareable digitally with a
-                        single click.</div>
+                    <div class="feat-title">Smart payroll configuration</div>
+                    <div class="feat-desc">Configure salary structures, components, attendance rules, and statutory
+                        deductions with guided steps and sensible defaults.</div>
                 </div>
                 <div class="feat-card">
                     <div class="feat-icon">📊</div>
-                    <div class="feat-title">Reporting & Dashboard</div>
-                    <div class="feat-desc">Live dashboards and exportable reports to keep leadership always in the know.
-                    </div>
+                    <div class="feat-title">Real-time payroll dashboard</div>
+                    <div class="feat-desc">View salary outflow, attendance trends, upcoming payouts, and compliance
+                        indicators in one clean real-time dashboard.</div>
                 </div>
                 <div class="feat-card">
-                    <div class="feat-icon">👥</div>
-                    <div class="feat-title">User Management</div>
-                    <div class="feat-desc">Granular control over who can view, edit, or approve — across every module.
-                    </div>
+                    <div class="feat-icon">📝</div>
+                    <div class="feat-title">Ready-made reports</div>
+                    <div class="feat-desc">Download payslips, salary registers, statutory summaries, and audit-ready
+                        exports in a few clicks.</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🚀</div>
+                    <div class="feat-title">Designed for speed</div>
+                    <div class="feat-desc">Monthly payroll, revisions, and full-and-final settlements completed much
+                        faster than manual or spreadsheet-based processes.</div>
                 </div>
             </div>
         </section>
 
-        <!-- WHY HRMS LITE -->
+        <!-- AT A GLANCE -->
         <section style="padding-top:0">
-            <div class="section-label">Why Smart Payroll</div>
-            <div class="section-title">Built for results.</div>
+            <div class="section-label">At a glance</div>
+            <div class="section-title">Quick Facts</div>
             <div class="why-grid">
                 <div class="why-card">
-                    <div class="why-num">100%</div>
-                    <div class="why-label">End-to-End<br>Encrypted Data</div>
+                    <div class="why-label"><strong>Employees:</strong><br><span style="color: var(--navy)">Up to a few
+                            hundred per company</span></div>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">&lt;5 min</div>
-                    <div class="why-label">Onboarding<br>Setup Time</div>
+                    <div class="why-label"><strong>Use cases:</strong><br><span style="color: var(--navy)">Startups,
+                            SMEs, CAs/consultants, and firms shifting from Excel or manual payroll</span></div>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">0</div>
-                    <div class="why-label">Payroll Errors<br>with Automation</div>
+                    <div class="why-label"><strong>Geography:</strong><br><span style="color: var(--navy)">India,
+                            multi-location and multi-state</span></div>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">24/7</div>
-                    <div class="why-label">Access from<br>Anywhere</div>
+                    <div class="why-label"><strong>Deployment:</strong><br><span style="color: var(--navy)">Secure
+                            cloud-based access from anywhere</span></div>
+                </div>
+                <div class="why-card">
+                    <div class="why-label"><strong>Typical go-live:</strong><br><span style="color: var(--navy)">Under
+                            one working day after basic setup</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECURITY BANNER -->
+        <!-- FROM EXCEL TO EFFORTLESS -->
         <div class="security-banner">
-            <div class="sec-icon">🛡️</div>
+            <div class="sec-icon">📊</div>
             <div class="sec-content">
-                <h3>Security at the Core</h3>
+                <h3>From Excel to effortless payroll</h3>
                 <p>
-                    HRMS Lite is built with enterprise-grade security from the ground up. Every byte of your HR and
-                    payroll data is encrypted end-to-end — at rest and in transit — so your team's sensitive information
-                    stays protected always.
+                    A 40-employee tech startup shifted from Excel-based payroll to Smart Payroll. Processing time
+                    dropped from approximately 6 hours to under 30 minutes, with zero reported errors across multiple
+                    cycles. The founder and HR lead now close payroll without external consultants.
                 </p>
+            </div>
+        </div>
+
+        <!-- BUILT AND BACKED -->
+        <div class="security-banner" style="background: var(--sec-banner-bg2);">
+            <div class="sec-icon">🏢</div>
+            <div class="sec-content">
+                <h3>Built and backed by CSII INDIA Pvt. Ltd.</h3>
+                <p>
+                    Smart Payroll is powered by CSII INDIA Pvt. Ltd., a <strong>CMMI Level 5, ISO 9001:2015, and ISO
+                        27001 certified organization</strong> with deep experience in customized ERP and HRMS solutions.
+                </p>
+                <div style="font-family: 'Syne', sans-serif; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">
+                    Compliance and Features</div>
                 <div class="sec-tags">
-                    <span class="sec-tag">AES-256 Encryption</span>
-                    <span class="sec-tag">Role-Based Access</span>
-                    <span class="sec-tag">Audit Logs</span>
-                    <span class="sec-tag">Data Privacy Compliant</span>
-                    <span class="sec-tag">Secure Cloud Storage</span>
+                    <span class="sec-tag">CMMI Level 5</span>
+                    <span class="sec-tag">ISO 9001:2015</span>
+                    <span class="sec-tag">ISO 27001</span>
+                    <span class="sec-tag">PF, ESI, PT, TDS</span>
+                    <span class="sec-tag">Bonus and Gratuity</span>
+                    <span class="sec-tag">Audit-Ready Reports</span>
                 </div>
             </div>
         </div>
 
-        <!-- FOOTER -->
-        <footer>
-            <div class="footer-left">Smart<span>Payroll</span> &mdash; Launch Edition 2025</div>
-            <div class="footer-right">Simplifying HR for every organization. 🚀</div>
-        </footer>
+        <section style="padding-top:0">
+            <div class="section-label">About</div>
+            <p
+                style="text-align: center; color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7;">
+                Helping Indian businesses run accurate, compliant payroll without complexity — built on two decades of
+                ERP and HRMS expertise.
+            </p>
+        </section>
 
+        <section style="padding-top:0; padding-bottom: 40px;">
+            <div class="section-label">Get in Touch</div>
+
+            <div
+                style="background: var(--touch-bg); border: 1px solid var(--touch-border); border-radius: 16px; padding: 32px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; color: var(--gray); transition: background 0.3s, border-color 0.3s;">
+                <div><strong>Website:</strong> <a href="http://www.csii.in" target="_blank"
+                        style="color: var(--blue); text-decoration: none;">www.csii.in</a></div>
+                <div><strong>Email:</strong> <a href="mailto:dsa@csii.in"
+                        style="color: var(--blue); text-decoration: none;">dsa@csii.in</a></div>
+                <div><strong>Phone:</strong> +91 98717 21666</div>
+                <div>
+                    <strong>Address:</strong><br>
+                    C-56, A/2, Phase 2<br>
+                    Industrial Area, Sector 62<br>
+                    Noida, Uttar Pradesh – 201309
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER (Handled by footer-js) -->
     </div>
 
     <!-- Inject Modal and Footer Scripts -->
@@ -610,6 +788,25 @@
     <script src="js/jquery-3.6.3.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/footer.js" type="text/javascript"></script>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const spLogo = document.getElementById('spLogo');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                spLogo.src = 'images/sp-logo-dark.jpg';
+                spLogo.style.mixBlendMode = 'normal'; // remove multiply for dark logo on dark background
+            } else {
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                spLogo.src = 'images/sp-logo-light.jpg';
+                spLogo.style.mixBlendMode = 'multiply';
+            }
+        });
+    </script>
 </body>
 
 </html>
